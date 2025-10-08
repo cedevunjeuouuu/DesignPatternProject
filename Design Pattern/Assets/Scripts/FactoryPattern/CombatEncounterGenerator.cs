@@ -3,9 +3,12 @@ using UnityEngine;
 public class CombatEncounterGenerator : EncounterGenerator
 {
     [SerializeField] private GameObject textCombat;
-    protected override void StartFight()
+
+    protected override IEncounter CreateEncounter()
     {
-        base.StartFight();
         textCombat.SetActive(true);
+
+        var trainerPokemon = PickRandomPokemon();
+        return new FightEncounter(trainerPokemon);
     }
 }
